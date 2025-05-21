@@ -60,9 +60,9 @@ E-Commerce-Website/ ├── backend/ │ ├── app.js │ ├── routes
 
 **Himanshu Gandhi**  
 - Postgraduate student, Project Management – Fleming College  
-- [LinkedIn][https://linkedin.com/in/himanshu3024](https://www.linkedin.com/in/himanshu-gandhi-891204160/)
+- [LinkedIn](https://www.linkedin.com/in/himanshu-gandhi-891204160/)
 
 ## ⭐ Showcase This Project
 
 - **Live Demo**: Coming soon after deployment.
-- **GitHub Repository**: [https://github.com/himanshu3024/E-Commerce-Website](https://github.com/himanshu3024/E-Commerce-Website)
+- **GitHub Repository**:(https://github.com/himanshu3024/E-Commerce-Website)
