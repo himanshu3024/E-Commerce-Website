@@ -24,36 +24,13 @@ This e-commerce platform includes the following features:
 
 ## 🧱 Architecture
 
-```
-Frontend (Static HTML/React)
-  ↓
-Azure Static Web Apps (planned)
-  ↓
-Backend (Node.js + Express)
-  ↓
-Azure App Service (Deployed)
-  ↓
-Azure SQL Database (Live DB)
-```
+Frontend (Static HTML/React) ↓ Azure Static Web Apps (planned) ↓ Backend (Node.js + Express) ↓ Azure App Service (Deployed) ↓ Azure SQL Database (Live DB)
+
 
 ## 🗂️ Folder Structure
 
-```
-E-Commerce-Website/
-├── backend/
-│   ├── app.js
-│   ├── routes/
-│   │   ├── products.js
-│   │   └── cart.js
-│   ├── .env
-│   └── package.json
-└── frontend/ (Coming soon)
-    ├── index.html
-    ├── products.html
-    ├── cart.html
-    ├── script.js
-    └── style.css
-```
+E-Commerce-Website/ ├── backend/ │ ├── app.js │ ├── routes/ │ │ ├── products.js │ │ └── cart.js │ ├── .env │ └── package.json └── frontend/ (Coming soon) ├── index.html ├── products.html ├── cart.html ├── script.js └── style.css
+
 
 ## 📌 Features Implemented
 
@@ -82,10 +59,10 @@ E-Commerce-Website/
 ## 📬 Author
 
 **Himanshu Gandhi**  
-- Postgraduate student, Cloud Computing Technologies – George Brown College (Casa Loma)
-- [LinkedIn](https://linkedin.com/in/himanshu3024)
+- Postgraduate student, Project Management – Fleming College  
+- [LinkedIn](https://www.linkedin.com/in/himanshu-gandhi-891204160/)
 
 ## ⭐ Showcase This Project
 
 - **Live Demo**: Coming soon after deployment.
-- **GitHub Repository**: [https://github.com/himanshu3024/E-Commerce-Website](https://github.com/himanshu3024/E-Commerce-Website)
+- **GitHub Repository**:(https://github.com/himanshu3024/E-Commerce-Website)
