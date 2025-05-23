@@ -12,9 +12,11 @@ if (document.getElementById("product-list")) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const products = await response.json();
+      console.log('Products fetched:', products);
       productList.innerHTML = ''; // Clear loading message
       if (products.length === 0) {
         productList.innerHTML = '<p>No products available.</p>';
+        console.log('No products to display');
         return;
       }
       products.forEach(p => {
@@ -27,9 +29,13 @@ if (document.getElementById("product-list")) {
         `;
         productList.appendChild(div);
       });
+      console.log('Products rendered:', products.length);
     } catch (error) {
-      console.error('Error fetching products:', error);
-      productList.innerHTML = '<p>Error loading products. Please try again later.</p>';
+      console.error('Error fetching products:', {
+        message: error.message,
+        stack: error.stack
+      });
+      productList.innerHTML = `<p>Error loading products: ${error.message}. Please try again later.</p>`;
     }
   }
 
@@ -51,9 +57,13 @@ async function addToCart(id) {
     }
     const result = await response.json();
     alert(result.message || 'Added to cart!');
+    console.log('Item added to cart:', { productId: id, quantity: 1 });
   } catch (error) {
-    console.error('Error adding to cart:', error);
-    alert('Failed to add item to cart. Please try again.');
+    console.error('Error adding to cart:', {
+      message: error.message,
+      stack: error.stack
+    });
+    alert(`Failed to add item to cart: ${error.message}`);
   }
 }
 
@@ -69,20 +79,29 @@ if (document.getElementById("cart-items")) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const cart = await response.json();
+      console.log('Cart items fetched:', cart);
       cartItems.innerHTML = ''; // Clear loading message
       if (cart.length === 0) {
         cartItems.innerHTML = '<p>Your cart is empty.</p>';
+        console.log('No cart items to display');
         return;
       }
       cart.forEach(item => {
         const div = document.createElement("div");
         div.className = 'cart-item';
-        div.innerHTML = `<strong>${item.Name}</strong> - $${item.Price.toFixed(2)} (Quantity: ${item.Quantity})`;
+        div.innerHTML = `
+          <strong>${item.Name}</strong>
+          <span>$${item.Price.toFixed(2)} (Quantity: ${item.Quantity})</span>
+        `;
         cartItems.appendChild(div);
       });
+      console.log('Cart items rendered:', cart.length);
     } catch (error) {
-      console.error('Error fetching cart:', error);
-      cartItems.innerHTML = '<p>Error loading cart. Please try again later.</p>';
+      console.error('Error fetching cart:', {
+        message: error.message,
+        stack: error.stack
+      });
+      cartItems.innerHTML = `<p>Error loading cart: ${error.message}. Please try again later.</p>`;
     }
   }
 
