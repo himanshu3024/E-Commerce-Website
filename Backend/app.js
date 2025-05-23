@@ -11,7 +11,7 @@ app.use(cors()); // Enable CORS for all origins
 app.use(express.json()); // Parse JSON body requests
 
 // Serve static frontend files
-app.use(express.static(path.join(__dirname, '../Frontend')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Routes
 const cartRoutes = require('./routes/cart');
@@ -23,7 +23,7 @@ app.use('/products', productRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../Frontend/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // Custom 404 handler
