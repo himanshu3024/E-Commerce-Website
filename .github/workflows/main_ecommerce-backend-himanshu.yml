@@ -22,7 +22,8 @@ jobs:
           pwd
           ls -la
           ls -la Backend || echo "Backend directory not found"
-          ls -la Frontend || echo "Frontend directory not found"
+          ls -la frontend || echo "frontend directory not found"
+          find . -type f -name "*.html" -o -name "*.js" -o -name "*.json" -o -name "*.yml"
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
@@ -33,9 +34,29 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
+      - name: Verify frontend files
+        run: |
+          if [ ! -d "frontend" ]; then
+            echo "Error: frontend directory missing!"
+            exit 1
+          fi
+          if [ ! -f "frontend/index.html" ]; then
+            echo "Error: frontend/index.html missing!"
+            exit 1
+          fi
+          if [ ! -f "frontend/cart.html" ]; then
+            echo "Error: frontend/cart.html missing!"
+            exit 1
+          fi
+          if [ ! -f "frontend/script.js" ]; then
+            echo "Error: frontend/script.js missing!"
+            exit 1
+          fi
       - name: Zip artifact for deployment
         run: |
-          zip -r release.zip Backend/ Frontend/
+          zip -r release.zip Backend/ frontend/
+      - name: List zip contents
+        run: unzip -l release.zip
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
