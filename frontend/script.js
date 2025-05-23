@@ -1,5 +1,3 @@
-const API_BASE_URL = 'https://ecommerce-backend-himanshu.azurewebsites.net';
-
 // Fetch and display products on the product page
 if (document.getElementById("product-list")) {
   const productList = document.getElementById("product-list");
@@ -7,7 +5,7 @@ if (document.getElementById("product-list")) {
   async function fetchProducts() {
     productList.innerHTML = '<p>Loading products...</p>';
     try {
-      const response = await fetch(`${API_BASE_URL}/api/products`);
+      const response = await fetch('/api/products');
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -45,7 +43,7 @@ if (document.getElementById("product-list")) {
 // Add item to cart via backend API
 async function addToCart(id) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/cart`, {
+    const response = await fetch('/api/cart', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -74,7 +72,7 @@ if (document.getElementById("cart-items")) {
   async function fetchCart() {
     cartItems.innerHTML = '<p>Loading cart...</p>';
     try {
-      const response = await fetch(`${API_BASE_URL}/api/cart`);
+      const response = await fetch('/api/cart');
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
