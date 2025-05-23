@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const sql = require('mssql');
-const dbConfig = require('../db');
+const { sql, poolPromise } = require('../db');
 
 router.get('/', async (req, res) => {
   try {
-    await sql.connect(dbConfig);
-    const result = await sql.query('SELECT * FROM Products');
+    const pool = await poolPromise;
+    const result = await pool.request().query('SELECT * FROM Products');
     res.json(result.recordset);
   } catch (err) {
     console.error('Error fetching products:', err);

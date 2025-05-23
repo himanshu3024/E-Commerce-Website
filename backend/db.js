@@ -2,10 +2,10 @@ require('dotenv').config();
 const sql = require('mssql');
 
 const config = {
-  user: 'himanshu3024',
-  password: 'Himanshu#18',
-  server: 'ecommercedatabas.database.windows.net',
-  database: 'E-Commerce-Website-db',
+  user: process.env.DB_USER || 'himanshu3024',
+  password: process.env.DB_PASSWORD || 'Himanshu#18',
+  server: process.env.DB_SERVER || 'ecommercedatabas.database.windows.net',
+  database: process.env.DB_NAME || 'E-Commerce-Website-db',
   options: {
     encrypt: true, // Required for Azure SQL
     enableArithAbort: true,

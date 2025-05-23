@@ -1,56 +1,37 @@
 require('dotenv').config();
-const sql = require('mssql');
 const express = require('express');
+const cors = require('cors');
+const { poolPromise } = require('./db');
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ Database config (your existing config)
-const config = {
-  user: 'himanshu3024',
-  password: 'Himanshu#18',
-  server: 'ecommercedatabas.database.windows.net',
-  database: 'E-Commerce-Website-db',
-  options: {
-    encrypt: true,
-    trustServerCertificate: false,
-    connectTimeout: 30000
-  }
-};
+// Middleware
+app.use(cors()); // Enable CORS for all origins
+app.use(express.json()); // Parse JSON body requests
 
-// ✅ Connect to database
-async function connectToDatabase() {
-  try {
-    let pool = await sql.connect(config);
-    console.log('Connected to database');
-    return pool;
-  } catch (err) {
-    console.error('Database Connection Failed!', err);
-    throw err;
-  }
-}
-
-connectToDatabase();
-
-// ✅ Middleware to parse JSON
-app.use(express.json());
-
-// ✅ Routes
-const cartRoutes = require('./routes/cart');       // make sure this path is correct
-const productRoutes = require('./routes/products'); // if you have it
-
-app.use(express.json()); // To parse JSON body requests
+// Routes
+const cartRoutes = require('./routes/cart');
+const productRoutes = require('./routes/products');
 app.use('/api/cart', cartRoutes);
-app.use('/api/products', productRoutes); // if products.js exists
+app.use('/api/products', productRoutes);
 
-// ✅ Basic route
+// Basic route
 app.get('/', (req, res) => {
   res.send('E-Commerce Backend API');
 });
 
-// ✅ Start server
-app.listen(port, () => {
-  console.log(`🚀 Server running on port ${port}`);
+// Global error handling for unhandled promise rejections
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Promise Rejection:', err);
 });
 
-// ✅ Export config so routes can use it
-module.exports = config;
+// Start server
+app.listen(port, async () => {
+  try {
+    await poolPromise; // Ensure DB connection is established
+    console.log('✅ Connected to Azure SQL DB');
+    console.log(`🚀 Server running on port ${port}`);
+  } catch (err) {
+    console.error('Failed to connect to database:', err);
+  }
+});
