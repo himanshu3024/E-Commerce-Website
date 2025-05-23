@@ -22,7 +22,7 @@ jobs:
           pwd
           ls -la
           ls -la Backend || echo "Backend directory not found"
-          ls -la Frontend || echo "Frontend directory not found"
+          ls -la Frontend || echo "frontend directory not found"
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
@@ -35,7 +35,7 @@ jobs:
           npm run test --if-present
       - name: Zip artifact for deployment
         run: |
-          zip -r release.zip Backend/ Frontend/
+          zip -r release.zip Backend/ frontend/
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
