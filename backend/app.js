@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 // Global error handling for unhandled promise rejections
 process.on('unhandledRejection', (err) => {
-  console.error('Unhandled Promise Rejection:', err);
+  console.error('Unhandled Promise Rejection:', err.stack);
 });
 
 // Start server
@@ -32,6 +32,7 @@ app.listen(port, async () => {
     console.log('✅ Connected to Azure SQL DB');
     console.log(`🚀 Server running on port ${port}`);
   } catch (err) {
-    console.error('Failed to connect to database:', err);
+    console.error('Failed to connect to database:', err.stack);
+    process.exit(1);
   }
 });

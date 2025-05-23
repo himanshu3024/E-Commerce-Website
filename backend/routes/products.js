@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const result = await pool.request().query('SELECT * FROM Products');
     res.json(result.recordset);
   } catch (err) {
-    console.error('Error fetching products:', err);
+    console.error('Error fetching products:', err.stack);
     res.status(500).send('Server Error');
   }
 });

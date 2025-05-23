@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     `);
     res.json(result.recordset);
   } catch (err) {
-    console.error('Error fetching cart:', err);
+    console.error('Error fetching cart:', err.stack);
     res.status(500).send('Server Error');
   }
 });
@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
       `);
     res.status(201).send('Item added to cart');
   } catch (err) {
-    console.error('Error adding to cart:', err);
+    console.error('Error adding to cart:', err.stack);
     res.status(500).send('Server Error');
   }
 });
