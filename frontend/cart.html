@@ -3,14 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Cart has</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>My E-Commerce Site - Your Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #2c3e50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover {
+      background-color: #34495e;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    #cart-items {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .cart-item {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .cart-item strong {
+      color: #2c3e50;
+    }
+    @media (min-width: 600px) {
+      #cart-items {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Your Shopping Cart</h1>
-  <div id="cart-items"></div>
-  <a href="index.html">← Back to Shop</a>
-
+  <header>
+    <nav>
+      <a href="index.html">Shop</a>
+      <a href="cart.html">Cart 🛒</a>
+    </nav>
+  </header>
+  <main role="main">
+    <h1>Your Shopping Cart</h1>
+    <div id="cart-items">
+      <p>Loading cart...</p>
+    </div>
+  </main>
   <script src="script.js"></script>
 </body>
 </html>
