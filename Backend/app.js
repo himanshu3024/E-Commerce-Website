@@ -13,11 +13,18 @@ app.use(express.json()); // Parse JSON body requests
 const cartRoutes = require('./routes/cart');
 const productRoutes = require('./routes/products');
 app.use('/api/cart', cartRoutes);
+app.use('/cart', cartRoutes); // Support /cart endpoint
 app.use('/api/products', productRoutes);
+app.use('/products', productRoutes); // Support /products endpoint
 
 // Basic route
 app.get('/', (req, res) => {
   res.send('E-Commerce Backend API');
+});
+
+// Custom 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: `Route ${req.originalUrl} not found` });
 });
 
 // Global error handling for unhandled promise rejections
